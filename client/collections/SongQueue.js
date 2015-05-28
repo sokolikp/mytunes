@@ -4,44 +4,34 @@ var SongQueue = Songs.extend({
   initialize: function(){
 
     this.on('add', function() {
+      //if song added is the first song, play
       if(this.length === 1) {
-        //first song? Play
         this.playFirst();
       }
 
     }, this);
 
     this.on('ended', function() {
+      //This dequeue function calls SongModels' function, not THIS dequeue!
       this.at(0).dequeue();
-      if(this.length) {
-        this.playFirst();
-      }
     }, this);
 
+    //call built-in dequeue, which plays next song
     this.on('dequeue', function(song){
       this.dequeue(song);
     }, this);
-
-    // this.on('enqueue', function(song){
-    //   console.log("I'm triggering enqueue with song: " + song);
-    //   this.enqueue(song);
-    // }, this);
   },
 
   playFirst: function() {
     this.at(0).play();
-    // this.at(0).dequeue();
-    // this.at(1).enqueue();
-    // this.at(1).play();
   },
 
   dequeue: function(song) {
+    var temp = this.at(0);
     this.remove(song);
+    if(temp === song && this.length){
+      this.playFirst();
+    }
   },
-
-  // enqueue: function(song) {
-  //   console.log("I'm queueing a song")
-  //   this.add(song);
-  // }
 
 });

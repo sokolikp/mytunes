@@ -8,7 +8,6 @@ var PlayerView = Backbone.View.extend({
     "ended": 'handleEnded'
   },
   handleEnded: function(){
-    // console.log("I'm here!");
     this.model.ended();
   },
 

@@ -18,9 +18,7 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('enqueue', function(song){
-      console.log(this);
-      //this.set('songQueue', song);
-      debugger;
+      // you can only add a song once to a collection.
       this.get('songQueue').add(song);
     }, this)
   }
