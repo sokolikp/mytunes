@@ -7,8 +7,8 @@ body {
 }
 
 table {
-  /*margin: auto;*/
-  display: inline-block;
+  margin: auto;
+  /*display: inline-block;*/
 }
 
 audio {
